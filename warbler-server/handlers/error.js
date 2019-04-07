@@ -1,0 +1,10 @@
+// An errorHandler that returns json rather than the nasty HTML that is usually returned
+function errorHandler(error, request, response, next){
+    return response.status(error.status || 500).json({
+        error: {
+            message: error.message || "Oops! Something went wrong."
+        }
+    });
+}
+
+module.exports = errorHandler;
