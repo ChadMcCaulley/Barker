@@ -8,9 +8,10 @@ body {
 .navbar{
   margin-bottom: 1 rem;
 }
-.navbar a{
-  font-weight: bold;
+#logoutNavbar:hover{
   color: white;
+  text-decoration: underline;
+  cursor: pointer;
 }
 .navbar a:hover{
   color: white;
@@ -24,7 +25,9 @@ body {
   margin-right: 5px;
   border-radius: 2px;
 }
-ul.nav.navbar-nav li {
+ul.nav.navbar-nav li, a{
+  font-weight: bold;
+  color: white;
   margin: 0 0.5rem;
 }
 .onboarding > .navbar {
