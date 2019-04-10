@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import Logo from "../images/warbler-logo.png";
+import Logo from "../images/barker-logo.png";
 
 class Navbar extends Component{
     render(){
@@ -10,7 +10,7 @@ class Navbar extends Component{
                 <div className="container-fluid">
                     <div className="navbar-header">
                         <Link to="/" className="navbar-brand">
-                            <img src={Logo} alt="WarblerHome"/>
+                            <img src={Logo} alt="BarkerHome"/>
                         </Link>
                     </div>   
                 <ul className="nav navbar-nav navbar-right">
