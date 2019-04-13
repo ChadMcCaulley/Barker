@@ -56,3 +56,18 @@ ul.nav.navbar-nav li, a{
   color: #fff;
   text-shadow: 0 0 8px #66757f;
 }
+
+/***********************************
+  *   Messages
+***********************************/
+#messages .list-group-item{
+  display: flex;
+  align-items: flex-start;
+  padding: 12px 12px;
+}
+#messages:not(.no-hover) .list-group-item:hover{
+  background-color: #e6ecf0
+}
+#message-username{
+  color: #1c92d2;
+}

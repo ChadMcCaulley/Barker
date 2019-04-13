@@ -5,7 +5,8 @@ const   express         = require("express"),
         bodyParser      = require("body-parser"),
         errorHandler    = require("./handlers/error"),
         authRoutes      = require("./routes/auth"),
-        messagesRoutes  = require("./routes/messages");
+        messagesRoutes  = require("./routes/messages"),
+        db              = require("./models");
 const   {loginRequired, ensureCorrectUser} = require("./middleware/auth");
         
 const PORT = 8081;
@@ -24,8 +25,7 @@ app.use(
 // A route for any user to view all messages
 app.get("/api/messages", loginRequired, async function(req, res, next){
     try{    
-        let messages = await db.Message
-            .find()
+        let messages = await db.Message.find()
             .sort({createdAt: "desc"})
             .populate("user", {
                 username: true,
