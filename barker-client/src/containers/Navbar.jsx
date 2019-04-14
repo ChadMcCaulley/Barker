@@ -24,7 +24,7 @@ class Navbar extends Component{
                                 <Link to={`/users/${this.props.currentUser.user.id}/messages/new`}> New Message </Link>  
                             </li>
                             <li>
-                                <a id="logoutNavbar" onClick={this.logout}> Log out </a>
+                                <a id="logoutNavbar" onClick={this.logout}> Log Out </a>
                             </li>
                         </ul>
                     ) : (

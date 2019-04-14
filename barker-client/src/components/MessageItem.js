@@ -16,8 +16,8 @@ const MessageItem = ({
             <img 
                 src={profileImageUrl || DefaultProfileImg} 
                 alt={username}
-                height="100"
-                width="100"
+                width="30%"
+                height="30%"
                 className="timeline-image"
             />
             <div className="message-area">
@@ -28,6 +28,11 @@ const MessageItem = ({
                     </Moment>
                 </span>
                 <p> {text} </p>
+                {isCorrectUser &&
+                    <a className="btn btn-danger" onClick={removeMessage}> 
+                        DELETE
+                    </a>
+                }
             </div>
         </li>
     </div>
