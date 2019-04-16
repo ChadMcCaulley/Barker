@@ -1,6 +1,7 @@
 import { apiCall } from "../../services/api";
 import { addError } from "./errors";
 import { LOAD_MESSAGES, REMOVE_MESSAGE } from "../actionTypes";
+import {setCurrentUser} from "../actions/auth";
 
 export const loadMessages = messages => ({
   type: LOAD_MESSAGES,
@@ -35,6 +36,10 @@ export const fetchMessages = () => {
 export const postNewMessage = text => (dispatch, getState) => {
   let {currentUser} = getState();
   const id = currentUser.user.id;
+  let newMessages = currentUser.user.messages.slice();
+  newMessages.push({text});
+  currentUser.user.messages = newMessages;
+  setCurrentUser(currentUser);
   return apiCall("post", `/api/users/${id}/messages`, {text})
     .then(res => {})
     .catch(err => dispatch(addError(err.message)))

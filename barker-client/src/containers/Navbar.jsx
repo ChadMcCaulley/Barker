@@ -14,7 +14,7 @@ class Navbar extends Component{
             <nav className="navbar navbar-expand">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <Link to="/" className="navbar-brand">
+                        <Link to="/" id="navbar-home" className="navbar-brand">
                             <img src={Logo} alt="BarkerHome"/>
                         </Link>
                     </div>  

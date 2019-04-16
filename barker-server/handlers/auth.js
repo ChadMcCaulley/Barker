@@ -7,7 +7,7 @@ exports.signin = async function(req, res, next) {
         let user = await db.User.findOne({
             email: req.body.email
         });
-        let {id, username, profileImageUrl} = user;
+        let {id, username, profileImageUrl, email, messages} = user;
         let isMatch = await user.comparePassword(req.body.password);
         // checking if their password matches what was sent to the server
         // if it all matches then log them in
@@ -15,12 +15,16 @@ exports.signin = async function(req, res, next) {
             let token = jwt.sign({
                 id, 
                 username,
-                profileImageUrl
+                profileImageUrl,
+                email,
+                messages
             }, process.env.SECRET_KEY);
             return res.status(200).json({
                 id, 
                 username,
                 profileImageUrl,
+                email,
+                messages,
                 token
             });
         } else{
@@ -43,17 +47,21 @@ exports.signup = async function(req, res, next) {
         // Create a token (signing a token)
         // process.env.SECRET_KEY
         let user = await db.User.create(req.body);
-        let {id, username, profileImageUrl} = user; // Destructuring for easier code
+        let {id, username, profileImageUrl, email, messages} = user; // Destructuring for easier code
         let token = jwt.sign({
                 id,
                 username,
-                profileImageUrl
+                profileImageUrl, 
+                email,
+                messages
             }, process.env.SECRET_KEY
         );
         return res.status(200).json({
             id,
             username,
             profileImageUrl,
+            email,
+            messages,
             token
         });
     }catch(err){

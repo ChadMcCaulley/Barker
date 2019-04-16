@@ -6,6 +6,7 @@ class MessageForm extends Component {
     constructor(props){
         super(props);
         this.state = {
+            messages: this.props.messages,
             message: ""
         };
     }
@@ -17,9 +18,11 @@ class MessageForm extends Component {
     }
     render(){
         return(
-            <form onSubmit={this.handleNewMessage}>
+            <form onSubmit={this.handleNewMessage} id="message-form">
                 {this.props.errors.message && <div className="alert alert-danger">{this.props.errors}</div>}
-                <input 
+                <textarea 
+                    rows="8"
+                    cols="20" 
                     type="text"
                     className="form-control"
                     value={this.state.message}
@@ -34,6 +37,7 @@ class MessageForm extends Component {
 }
 function mapStateToProps(state){
     return{
+        messages: state.currentUser.user.messages,
         errors: state.errors
     };
 }

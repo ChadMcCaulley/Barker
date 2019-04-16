@@ -33,6 +33,12 @@ ul.nav.navbar-nav li, a{
 .onboarding > .navbar {
   background-image: linear-gradient(to right, #f2fcfe,#1c92d2);
 }
+#navbar-home{
+  color: black;
+}
+#navbar-home img{
+  transform: scale(2);
+}
 
 /***********************************
   *   HomePage 
@@ -83,4 +89,19 @@ ul.nav.navbar-nav li, a{
 a.btn.btn-danger,
 a.btn.btn-danger:hover{
   color: white;
+}
+#message-form{
+  padding: 20px;
+}
+
+/***********************************
+  *   User Aside
+***********************************/
+.panel-body-link{
+  color: black;
+}
+.panel-body-link:hover{
+  color: black;
+  text-decoration: underline;
+  cursor: pointer;
 }

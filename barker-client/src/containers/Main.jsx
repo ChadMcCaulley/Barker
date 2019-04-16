@@ -13,7 +13,7 @@ const Main = props => {
     return(
         <div className="container">
             <Switch>
-                <Route exact path="/" render={props => <Homepage currentUser={currentUser} {...props}/>} />
+                <Route exact path="/" render={props => <Homepage currentUser={currentUser} {...props}/>}/>
                 <Route exact path="/signin" render={props => {
                     return (
                         <AuthForm 
