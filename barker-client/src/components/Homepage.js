@@ -18,6 +18,7 @@ const Homepage = ({currentUser}) => {
                     username={currentUser.user.username}
                     email={currentUser.user.email}
                     messages={currentUser.user.messages}
+                    followers={currentUser.user.followers}
                 />
             </div>  
         );

@@ -1,10 +1,17 @@
 import {apiCall, setTokenHeader} from "../../services/api";
-import {SET_CURRENT_USER} from "../actionTypes";
+import {SET_CURRENT_USER, SET_PAGEOWNER} from "../actionTypes";
 import {addError, removeError} from "./errors";
 
 export function setCurrentUser(user){
     return{
         type: SET_CURRENT_USER,
+        user
+    };
+}
+
+export function setPageOwner(user){
+    return{
+        type: SET_PAGEOWNER,
         user
     };
 }
@@ -17,6 +24,7 @@ export function logout(){
     return dispatch => {
         localStorage.clear();
         setAuthorizationToken(false);
+        dispatch(setPageOwner({}));
         dispatch(setCurrentUser({}));
     }
 }
@@ -28,6 +36,7 @@ export function authUser(type, userData){
                 .then(({token, ...user}) => {
                     localStorage.setItem("jwtToken", token);
                     setAuthorizationToken(token);
+                    dispatch(setPageOwner(user));   //set the initial page owner
                     dispatch(setCurrentUser(user)); //creates a user in our store
                     dispatch(removeError());
                     resolve();

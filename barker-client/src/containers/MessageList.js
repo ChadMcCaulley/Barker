@@ -18,6 +18,7 @@ class MessageList extends Component {
                 profileImageUrl={m.user.profileImageUrl} 
                 removeMessage={removeMessage.bind(this, m.user._id, m._id)}
                 isCorrectUser={currentUser === m.user._id}
+                messageUser={m.user}
             />
         ));
         return(

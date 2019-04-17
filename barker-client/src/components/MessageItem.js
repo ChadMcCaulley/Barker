@@ -2,13 +2,16 @@ import React from "react";
 import Moment from "react-moment"; // for timestamp
 import {Link} from "react-router-dom";
 import DefaultProfileImg from "../images/default-profile-image.png";
+import { setPageOwner } from "../store/actions/auth";
+import currentUser from "../store/reducers/currentUser";
 
 const MessageItem = ({
     date, 
     profileImageUrl, 
     text, 
     username, 
-    removeMessage, 
+    removeMessage,
+    messageUser,
     isCorrectUser
 }) => (
     <div>
@@ -21,15 +24,18 @@ const MessageItem = ({
                 className="timeline-image"
             />
             <div className="message-area">
-                <Link id="message-username" to="/">@{username} &nbsp;</Link>
+                <Link onClick={() => {console.log(messageUser); setPageOwner(messageUser)}} id="message-username">@{username} &nbsp;</Link>
                 <span className="text-muted">
                     <Moment className="text-muted" format="Do MMM YYYY">
                         {date}
                     </Moment>
                 </span>
                 <p> {text} </p>
+                <a className="btn btn-primary btn-xsm"> 
+                    FOLLOW
+                </a>
                 {isCorrectUser &&
-                    <a className="btn btn-danger btn-sm" onClick={removeMessage}> 
+                    <a className="btn btn-danger btn-xsm" onClick={removeMessage}> 
                         DELETE
                     </a>
                 }

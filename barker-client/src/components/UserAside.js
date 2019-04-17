@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import DefaultProfileImg from "../images/default-profile-image.png";
 
-const UserAside = ({profileImageUrl, username, email, messages}) => (
+const UserAside = ({profileImageUrl, username, email, messages, followers}) => (
     <form className="col-sm-3">
         <div className="panel-body">
             <img 
@@ -16,6 +16,7 @@ const UserAside = ({profileImageUrl, username, email, messages}) => (
             <Link className="panel-body-link"> {email} </Link>
             <div className="Followers-comments">
                 <div> Comments {messages.length} </div>
+                <div> Followers {followers.length} </div> 
             </div>
         </div>    
     </form>

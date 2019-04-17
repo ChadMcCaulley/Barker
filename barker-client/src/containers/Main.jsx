@@ -2,14 +2,16 @@ import React from "react";
 import {Switch, Route, withRouter, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import Homepage from "../components/Homepage";
+import UserPage from "../components/UserPage";
 import AuthForm from "../components/AuthForm";
 import {authUser} from "../store/actions/auth";
 import {removeError} from "../store/actions/errors";
 import withAuth from "../hocs/withAuth";
 import MessageForm from "../containers/MessageForm";
+import MessageList from "./MessageList";
 
 const Main = props => {
-    const {authUser, errors, removeError, currentUser} = props;
+    const {authUser, errors, removeError, currentUser, pageOwner} = props;
     return(
         <div className="container">
             <Switch>
@@ -40,6 +42,7 @@ const Main = props => {
                     )
                 }}/>
             </Switch>
+            <Route path="/users/:id/userpage" render={props => <UserPage {...props}/>}/>
             <Route path="/users/:id/messages/new" component={withAuth(MessageForm)} />
         </div>
     )

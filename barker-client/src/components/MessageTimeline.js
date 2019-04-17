@@ -10,6 +10,7 @@ const MessageTimeLine = props => {
                 username={props.username}
                 email={props.email}
                 messages={props.messages}
+                followers={props.followers}
             />
             <MessageList />
         </div>

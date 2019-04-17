@@ -9,8 +9,8 @@ export default function withAuth(ComponentToBeRendered){
                 this.props.history.push("/signin");
             }
         }
-        componentWillUpdate(nextProps){ //if the component changes, check again
-            if(nextProps.isAuthenticated === false){ //if user is not authenticated go to signin page
+        componentWillUpdate(nextProps){                 //if the component changes, check again
+            if(nextProps.isAuthenticated === false){    //if user is not authenticated go to signin page
                 this.props.history.push("signin");
             }
         }
