@@ -87,7 +87,9 @@ ul.nav.navbar-nav li, a{
   cursor: pointer;
 }
 a.btn.btn-danger,
+a.btn.btn-success,
 a.btn.btn-primary,
+a.btn.btn-success:hover,
 a.btn.btn-primary:hover,
 a.btn.btn-danger:hover{
   color: white;

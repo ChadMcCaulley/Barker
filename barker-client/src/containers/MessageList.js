@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {fetchMessages, removeMessage} from "../store/actions/messages";
-import MessageItem from "../components/MessageItem";
+import MessageItem from "../containers/MessageItem";
 
 class MessageList extends Component {
     componentDidMount(){
@@ -22,7 +22,7 @@ class MessageList extends Component {
             />
         ));
         return(
-            <div className="row col-sm-8">
+            <div className="row col-sm">
                 <div className="offset-1 col-sm-10">
                     <ul className="list-group" id="messages">
                         {messageList}
@@ -30,7 +30,7 @@ class MessageList extends Component {
                 </div>
             </div>
         );
-   }
+   } 
 }
 
 function mapStateToProps(state) {

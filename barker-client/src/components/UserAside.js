@@ -12,11 +12,13 @@ const UserAside = ({profileImageUrl, username, email, messages, followers}) => (
                 height="200"
                 className="img-thumbnail"
             />
-            <Link className="panel-body-link"> {username} </Link>
-            <Link className="panel-body-link"> {email} </Link>
-            <div className="Followers-comments">
-                <div> Comments {messages.length} </div>
-                <div> Followers {followers.length} </div> 
+            <div>
+                <Link className="panel-body-link"> {username} </Link>
+                <Link className="panel-body-link"> {email} </Link>
+                <div className="Followers-comments">
+                    <div> Comments {messages.length} </div>
+                    <div> Followers {followers.length} </div> 
+                </div>
             </div>
         </div>    
     </form>

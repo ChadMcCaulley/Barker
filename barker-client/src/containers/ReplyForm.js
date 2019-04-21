@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {postNewMessage} from "../store/actions/messages";
 
-class MessageForm extends Component {
+class ReplyForm extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -11,9 +11,8 @@ class MessageForm extends Component {
     }
     handleNewMessage = event => {
         event.preventDefault();
-        this.props.postNewMessage(this.state.message, false);  //post new message to database
-        this.setState({message: ""}); // reset message
-        this.props.history.push("/");
+        this.props.postNewMessage(this.state.message, true);  //post new message to database
+        this.setState({message: ""}); // reset message and remove replyForm
     }
     render(){
         return(
@@ -28,7 +27,7 @@ class MessageForm extends Component {
                     onChange={e => this.setState({message: e.target.value})}
                 />
                 <button type="submit" className="btn btn-success pull-right">
-                    Add New Message!
+                    SUBMIT
                 </button>
             </form>
         )
@@ -41,4 +40,4 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps, {postNewMessage})(MessageForm);
+export default connect(mapStateToProps, {postNewMessage})(ReplyForm);
