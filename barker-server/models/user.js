@@ -21,6 +21,8 @@ const userSchema = new mongoose.Schema({
     profileImageUrl: {
         type: String
     }, 
+    resetPasswordToken: String, //For password reset
+    resetPasswordExpires: Date,
     messages: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Message"

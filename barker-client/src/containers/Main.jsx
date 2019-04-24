@@ -4,7 +4,8 @@ import {connect} from "react-redux";
 import Homepage from "../components/Homepage";
 import UserPage from "../components/UserPage";
 import AuthForm from "../components/AuthForm";
-import {authUser} from "../store/actions/auth";
+import ForgotPassword from "../components/ForgotPassword";
+import {authUser, forgotPassword} from "../store/actions/auth";
 import {removeError} from "../store/actions/errors";
 import withAuth from "../hocs/withAuth";
 import MessageForm from "../containers/MessageForm";
@@ -38,6 +39,16 @@ const Main = props => {
                             signUp 
                             {...props}
                         /> 
+                    )
+                }}/>
+                <Route exact path="/forgotPassword" render={props => {
+                    return(
+                        <ForgotPassword
+                            removeError={removeError}
+                            errors={errors}
+                            onAuth={forgotPassword}
+                            {...props}
+                        />
                     )
                 }}/>
             </Switch>

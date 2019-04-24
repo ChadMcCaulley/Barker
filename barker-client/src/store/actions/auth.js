@@ -48,3 +48,19 @@ export function authUser(type, userData){
         });
     };
 }
+export function forgotPassword(email){
+    return apiCall("post", `/api/auth/forgotPassword`, email)
+    /*return dispatch => {
+        return new Promise((resolve, reject) => {
+            return apiCall("post", `/api/auth/forgotPassword`, email)
+                .then(res => {
+                    dispatch(removeError());
+                    resolve();
+                })
+                .catch(err => {
+                    dispatch(addError(err.message));
+                    reject();
+                }); 
+        });
+    }*/
+}
