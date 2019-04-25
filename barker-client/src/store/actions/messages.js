@@ -1,7 +1,7 @@
 import { apiCall } from "../../services/api";
 import { addError } from "./errors";
 import { LOAD_MESSAGES, REMOVE_MESSAGE } from "../actionTypes";
-import {setCurrentUser} from "../actions/auth";
+import {setCurrentUser} from "./auth";
 
 export const loadMessages = messages => ({
   type: LOAD_MESSAGES,
