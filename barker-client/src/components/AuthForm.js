@@ -7,14 +7,35 @@ export default class AuthForm extends Component{
         this.state = {
             email: "",
             username: "",
-            profileImageUrl: ""
+            profileImageUrl: "",
+            password: "",
+            showPasswordCriteria: false,
+            goodLen: false,
+            goodChars: false,
+            goodNums: false
         };
     }
     handleChange = e => {
         this.setState({
             [e.target.name]: e.target.value
         });
+        let password = this.state.password;
+        let containsNum = false;
+        if(password.length >= 8)
+            this.setState({goodLen: true});
+        else
+            this.setState({goodLen: false});
+        if(containsNum)
+            this.setState({goodNums: true});
+        else
+            this.setState({goodNums: false});
     };
+    handlePassword = e => {
+        e.preventDefault();
+        this.setState({
+            showPasswordCriteria: !this.state.showPasswordCriteria
+        });
+    }
     handleSubmit = event => {
         event.preventDefault();
         const authType = this.props.signUp ? "signup" : "signin";
@@ -27,7 +48,8 @@ export default class AuthForm extends Component{
             })
     };
     render() {
-        const{email, username, profileImageUrl} = this.state;
+        const{email, username, profileImageUrl, showPasswordCriteria} = this.state;
+        const{goodLen, goodChars, goodNums} = this.state;
         const {heading, buttonText, signUp, errors, history, removeError} = this.props;
         history.listen(() => {
             removeError();  
@@ -35,7 +57,7 @@ export default class AuthForm extends Component{
         return(
             <div>
                 <div className="row justify-content-md-center text-center">
-                    <div className="col-md-6">
+                    <div className="col-md-8">
                         <form onSubmit={this.handleSubmit}>
                             <h2> {heading} </h2>
                             {errors.message && <div className="alert alert-danger">{errors.message}</div>}
@@ -53,9 +75,28 @@ export default class AuthForm extends Component{
                                 className="form-control"
                                 id="password" 
                                 name="password" 
+                                onClick={this.handlePassword}
                                 onChange={this.handleChange} 
                                 type="password"
                             />
+                            {showPasswordCriteria && signUp &&  (
+                                <div id="password-criteria-list">
+                                    <form>
+                                        <ul>
+                                            <li className={goodLen ? "password-good" : "password-bad"}>
+                                                Password must be at least 8 characters long
+                                            </li>
+                                            <li className={goodChars ? "password-good" : "password-bad"}>
+                                                Password must contain both upper and lower case letters
+                                            </li>
+                                            <li className={goodNums ? "password-good" : "password-bad"}>
+                                                Password must contain at least one number
+                                            </li>
+                                        </ul>
+                                    </form>       
+                                </div>
+                                                               
+                            )}
                             {signUp && (
                                 <div>
                                     <label htmlFor="username">Username</label>

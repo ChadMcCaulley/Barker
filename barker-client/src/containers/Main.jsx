@@ -9,6 +9,7 @@ import {authUser, forgotPassword} from "../store/actions/auth";
 import {removeError} from "../store/actions/errors";
 import withAuth from "../hocs/withAuth";
 import MessageForm from "../containers/MessageForm";
+import ResetPassword from "../components/ResetPassword";
 
 const Main = props => {
     const {authUser, errors, removeError, currentUser, pageOwner} = props;
@@ -44,6 +45,16 @@ const Main = props => {
                 <Route exact path="/forgotPassword" render={props => {
                     return(
                         <ForgotPassword
+                            removeError={removeError}
+                            errors={errors}
+                            onAuth={forgotPassword}
+                            {...props}
+                        />
+                    )
+                }}/>
+                <Route path="/reset/:token" render={props => {
+                    return(
+                        <ResetPassword
                             removeError={removeError}
                             errors={errors}
                             onAuth={forgotPassword}

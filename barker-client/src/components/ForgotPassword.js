@@ -14,11 +14,11 @@ export default class ForgotPassword extends Component{
     };
     handleSubmit = e => {
         e.preventDefault();
-        this.props.onAuth(this.state.email);
+        this.props.onAuth(this.state);
     }
     render(){
-        const {email} = this.state;
-        const {errors, history, removeError} = this.props;
+        const {email, errorMessage, successful} = this.state;
+        const {history, removeError} = this.props;
         history.listen(() => {
             removeError();  
         });
@@ -28,7 +28,8 @@ export default class ForgotPassword extends Component{
                     <div className="col-md-6">
                         <form onSubmit={this.handleSubmit}>
                             <h2> Forgot Password </h2>
-                            {errors.message && <div className="alert alert-danger">{errors.message}</div>}
+                            {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+                            {successful  && <div className="alert alert-succes">{errorMessage}</div>}
                             <input 
                                 className="form-control" 
                                 id="email" 

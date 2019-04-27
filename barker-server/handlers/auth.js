@@ -6,27 +6,19 @@ const nodemailer = require("nodemailer");
 
 exports.forgotPassword = async function(req, res, next){
     try{
-        if(req.body.email == ""){
-            return next({
-                status:400,
-                message: "Email required"
-            });
-        }
         let user = await db.User.findOne({
             email: req.body.email
-        });        
-        if(user == null){
-            return next({
-                status: 400,
-                message: "Email is not in the database"
-            });
-        }
+        });
+        let {email} = user;
+        if(email == "")
+            return res.status(400).json("Email required");
+        if(user == null)
+            return res.status(400).json("That email is not in the database")
         const token = crypto.randomBytes(20).toString('hex');
         user.update({
             resetPasswordToken: token,
             resetPasswordExpires: Date.now() + 360000
         });
-        console.log(`${process.env.EMAIL_ADDRESS}`);
         const transport = nodemailer.createTransport({
             service: "gmail",
             auth: {
@@ -43,8 +35,17 @@ exports.forgotPassword = async function(req, res, next){
                     'http://' + req.headers.host + '/reset/' + token + '\n\n' +
                     'If you did not request this, please ignore this email and your password will remain unchanged.\n'
         };
-        transport.sendMail(mailOptions);
-        res.status(200).json("Recovery email sent");
+        transport.sendMail(mailOptions, (err) => {
+            if(err) 
+                return res.status(400).json("Email could not be sent")
+            else {
+                return res.status(200).json({
+                    message: "Recovery email sent",
+                    token: token
+                });
+            }
+        });
+        
     }
     catch(err){
         return next({
