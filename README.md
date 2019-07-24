@@ -1,5 +1,9 @@
-THIS IS NO LONGER THE REPO BEING USED
+This Repo is no longer being pushed to. 
 
-TO VIEW THE FRONT END: [Front End](https://github.com/ChadMcCaulley/Barker-Frontend)
+Before commiting to heroku, the site was split into to separte pieces.
 
-TO VIEW THE BACK END: [Back End](https://github.com/ChadMcCaulley/Barker-API)
+To view the current repos, please visit the links below: 
+
+[Barker Front End](https://github.com/ChadMcCaulley/Barker-Frontend) 
+
+[Barker API](https://github.com/ChadMcCaulley/Barker-API)
